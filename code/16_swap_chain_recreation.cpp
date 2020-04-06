@@ -104,7 +104,7 @@ private:
     std::vector<VkFence> imagesInFlight;
     size_t currentFrame = 0;
 
-    bool framebufferResized = false;
+    static bool framebufferResized;
 
     void initWindow() {
         glfwInit();
@@ -117,8 +117,8 @@ private:
     }
 
     static void framebufferResizeCallback(GLFWwindow* window, int width, int height) {
-        auto app = reinterpret_cast<HelloTriangleApplication*>(glfwGetWindowUserPointer(window));
-        app->framebufferResized = true;
+        //auto app = reinterpret_cast<HelloTriangleApplication*>(glfwGetWindowUserPointer(window));
+        framebufferResized = true;
     }
 
     void initVulkan() {
@@ -939,7 +939,7 @@ private:
         return VK_FALSE;
     }
 };
-
+inline bool HelloTriangleApplication::framebufferResized = false;
 int main() {
     HelloTriangleApplication app;
 
